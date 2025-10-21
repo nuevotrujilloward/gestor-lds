@@ -4,7 +4,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,10 +19,11 @@ public class JwtTokenProvider {
     private final long jwtExpirationInMs;
 
     public JwtTokenProvider(
-            @Value("${app.jwt.secret}") String jwtSecret,
-            @Value("${app.jwt.expiration}") long jwtExpirationInMs) {
+            @Value("${app.jwt.secret:your-super-secret-jwt-key-change-this-in-production}") String jwtSecret,
+            @Value("${app.jwt.expiration:86400000}") long jwtExpirationInMs) {
         this.jwtSecret = jwtSecret;
         this.jwtExpirationInMs = jwtExpirationInMs;
+        log.info("JwtTokenProvider initialized with expiration: {} ms", jwtExpirationInMs);
     }
 
     public String generateToken(UUID userId, String email) {
@@ -35,7 +35,7 @@ public class JwtTokenProvider {
                 .claim("email", email)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(Keys.hmacShaKeyFor(jwtSecret.getBytes()), SignatureAlgorithm.HS512)
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
 
@@ -60,9 +60,8 @@ public class JwtTokenProvider {
     }
 
     private Claims getClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
-                .build()
+        return Jwts.parser()
+                .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
                 .getBody();
     }

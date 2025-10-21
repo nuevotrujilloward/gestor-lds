@@ -1,16 +1,16 @@
 spring:
   application:
     name: GestorLDS
-  
+
   profiles:
     active: dev
-  
+
   datasource:
     url: jdbc:h2:mem:testdb  # H2 en memoria para desarrollo sin BD
     username: sa
     password:
     driver-class-name: org.h2.Driver
-  
+
   jpa:
     hibernate:
       ddl-auto: create-drop  # Auto-crear tablas para H2
@@ -20,18 +20,18 @@ spring:
         format_sql: true
         jdbc:
           batch_size: 20
-  
+
   h2:
     console:
       enabled: true  # Ver BD en http://localhost:8080/api/h2-console
-  
+
   flyway:
     enabled: false  # Desactivar Flyway por ahora con H2
-  
+
   mvc:
     cors:
-      allowed-origins: "http://localhost:3000,http://localhost:8000,http://localhost"
-      allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+      allowed-origins: "http://localhost:3000,http://localhost:8000,http://localhost,http://127.0.0.1:3000"
+      allowed-methods: GET,POST,PUT,DELETE,OPTIONS,PATCH
       allowed-headers: "*"
       allow-credentials: true
       max-age: 3600
@@ -40,21 +40,22 @@ server:
   port: 8080
   servlet:
     context-path: /api
-  
+
 logging:
   level:
     root: INFO
     com.gestorlds: DEBUG
     org.springframework.security: DEBUG
-  
+
   pattern:
     console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
 
 # JWT Configuration
+
 app:
   jwt:
-    secret: your-super-secret-jwt-key-change-this-in-production-at-least-256-bits-long
-    expiration: 86400000  # 24 horas en ms
+    secret: "your-super-secret-jwt-key-change-this-in-production-at-least-256-bits-long-12345"
+    expiration: 86400000
 
 # Swagger/OpenAPI
 springdoc:
