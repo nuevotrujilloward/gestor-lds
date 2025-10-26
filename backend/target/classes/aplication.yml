@@ -6,27 +6,27 @@ spring:
     active: dev
 
   datasource:
-    url: jdbc:h2:mem:testdb  # H2 en memoria para desarrollo sin BD
+    url: jdbc:h2:mem:gestorlds;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
     username: sa
     password:
-    driver-class-name: org.h2.Driver
 
   jpa:
     hibernate:
-      ddl-auto: create-drop  # Auto-crear tablas para H2
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
-        jdbc:
-          batch_size: 20
+
+  flyway:
+    enabled: false
 
   h2:
     console:
-      enabled: true  # Ver BD en http://localhost:8080/api/h2-console
-
-  flyway:
-    enabled: false  # Desactivar Flyway por ahora con H2
+      enabled: true
+      path: /h2-console
 
   mvc:
     cors:
@@ -38,8 +38,6 @@ spring:
 
 server:
   port: 8080
-  servlet:
-    context-path: /api
 
 logging:
   level:
@@ -51,7 +49,6 @@ logging:
     console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
 
 # JWT Configuration
-
 app:
   jwt:
     secret: "your-super-secret-jwt-key-change-this-in-production-at-least-256-bits-long-12345"

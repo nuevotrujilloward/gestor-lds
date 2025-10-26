@@ -31,7 +31,7 @@ public class Role {
     @Column(nullable = false)
     private String nivel;
 
-    @Column(columnDefinition = "jsonb")
+    @Column(columnDefinition = "TEXT")
     private String permisos;
 
     @Column(nullable = false, updatable = false)

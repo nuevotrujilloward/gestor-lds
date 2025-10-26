@@ -31,7 +31,7 @@ public class MeetingType {
     @Column(nullable = false)
     private String frecuencia;
 
-    @Column(columnDefinition = "jsonb")
+    @Column(columnDefinition = "TEXT")
     private String accesoRoles;
 
     @Column(nullable = false, updatable = false)
