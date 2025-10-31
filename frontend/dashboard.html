@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - GestorLDS</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h2>GestorLDS</h2>
+        <div class="user-info">
+            <span class="user-name" id="userName"></span>
+            <span id="userRole" style="color: #6b7280; font-size: 14px;"></span>
+            <button class="btn-logout" onclick="api.logout()">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Welcome Card -->
+        <div class="welcome-card">
+            <h3>Bienvenido, <span id="welcomeName"></span></h3>
+            <p>Gestiona tus responsabilidades y tareas del barrio</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h4>Tareas Pendientes</h4>
+                <div class="stat-value">0</div>
+            </div>
+            <div class="stat-card">
+                <h4>Reuniones Próximas</h4>
+                <div class="stat-value">0</div>
+            </div>
+            <div class="stat-card">
+                <h4>Discursos Asignados</h4>
+                <div class="stat-value">0</div>
+            </div>
+            <div class="stat-card">
+                <h4>Miembros Activos</h4>
+                <div class="stat-value" id="activeMembersCount">-</div>
+            </div>
+        </div>
+
+        <!-- Recent Activity Section -->
+        <h3 class="section-title">Actividad Reciente</h3>
+        <div class="card">
+            <div class="empty-state">
+                <p>No hay actividad reciente</p>
+                <p style="font-size: 13px; margin-top: 8px;">Las tareas y reuniones aparecerán aquí</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
