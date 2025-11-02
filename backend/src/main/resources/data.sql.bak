@@ -3,7 +3,7 @@
 -- =====================================================
 
 -- OBISPADO
-INSERT INTO roles (nombre, descripcion, nivel, permisos, created_at, updated_at) VALUES ('Obispo', 'Presidente del Barrio', 'OBISPADO', '["admin", "crear_reuniones", "ver_todas_tareas", "asignar_discursos"]', datetime('now'), datetime('now'));
+INSERT INTO roles (nombre, descripcion, nivel, permisos, created_at, updated_at) VALUES ('Obispo', 'Obispo', 'OBISPADO', '["admin", "crear_reuniones", "ver_todas_tareas", "asignar_discursos"]', datetime('now'), datetime('now'));
 INSERT INTO roles (nombre, descripcion, nivel, permisos, created_at, updated_at) VALUES ('Primer Consejero del Obispado', 'Primer Consejero en el Obispado', 'OBISPADO', '["crear_reuniones", "ver_tareas", "asignar_discursos"]', datetime('now'), datetime('now'));
 INSERT INTO roles (id, nombre, descripcion, nivel, permisos, created_at, updated_at) VALUES (RANDOM_UUID(), 'Segundo Consejero del Obispado', 'Segundo Consejero en el Obispado', 'OBISPADO', '["crear_reuniones", "ver_tareas", "asignar_discursos"]', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 INSERT INTO roles (id, nombre, descripcion, nivel, permisos, created_at, updated_at) VALUES (RANDOM_UUID(), 'Secretario de Barrio', 'Secretario del Barrio', 'OBISPADO', '["ver_tareas", "reportar_asistencia"]', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
