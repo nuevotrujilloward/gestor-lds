@@ -68,4 +68,83 @@ const api = {
         localStorage.removeItem('user');
         window.location.href = 'index.html';
     },
+
+    // Meetings
+    async getMeetings() {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE_URL}/meetings`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener reuniones');
+        }
+
+        return response.json();
+    },
+
+    async getUpcomingMeetings() {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE_URL}/meetings/upcoming`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener reuniones próximas');
+        }
+
+        return response.json();
+    },
+
+    async getMeetingTypes() {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE_URL}/meetings/types`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener tipos de reuniones');
+        }
+
+        return response.json();
+    },
+
+    async createMeeting(meetingData) {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE_URL}/meetings`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify(meetingData),
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Error al crear reunión');
+        }
+
+        return response.json();
+    },
+
+    async deleteMeeting(meetingId) {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE_URL}/meetings/${meetingId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al eliminar reunión');
+        }
+    },
 };

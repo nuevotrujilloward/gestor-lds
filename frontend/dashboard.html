@@ -144,12 +144,14 @@
 
             <!-- Meetings Section -->
             <div id="meetingsSection" class="content-section">
-                <h2 class="page-title">Reuniones</h2>
+                <div class="section-header">
+                    <h2 class="page-title">Reuniones</h2>
+                    <button class="btn-primary-action" id="createMeetingBtn" onclick="showCreateMeetingModal()">
+                        <span>➕</span> Nueva Reunión
+                    </button>
+                </div>
                 <div class="card">
-                    <div class="empty-state">
-                        <p>No hay reuniones programadas</p>
-                        <p style="font-size: 13px; margin-top: 8px;">Las reuniones programadas aparecerán aquí</p>
-                    </div>
+                    <div id="meetingsList" class="loading">Cargando reuniones...</div>
                 </div>
             </div>
 
@@ -179,6 +181,51 @@
                 </div>
             </div>
         </main>
+    </div>
+</div>
+
+<!-- Modal para crear reunión -->
+<div id="createMeetingModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Nueva Reunión</h3>
+            <span class="close" onclick="closeCreateMeetingModal()">&times;</span>
+        </div>
+        <form id="createMeetingForm">
+            <div class="form-group">
+                <label for="meetingType">Tipo de Reunión *</label>
+                <select id="meetingType" name="meetingTypeId" required>
+                    <option value="">Seleccionar...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="meetingDate">Fecha y Hora *</label>
+                <input type="datetime-local" id="meetingDate" name="fechaProgramada" required>
+            </div>
+
+            <div class="form-group">
+                <label for="meetingLocation">Ubicación</label>
+                <input type="text" id="meetingLocation" name="ubicacion" placeholder="Ej: Capilla del Barrio">
+            </div>
+
+            <div class="form-group">
+                <label for="meetingConductor">Conductor *</label>
+                <select id="meetingConductor" name="conductorId" required>
+                    <option value="">Seleccionar...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="meetingNotes">Notas</label>
+                <textarea id="meetingNotes" name="notasGenerales" rows="3" placeholder="Notas adicionales..."></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="closeCreateMeetingModal()">Cancelar</button>
+                <button type="submit" class="btn-primary">Crear Reunión</button>
+            </div>
+        </form>
     </div>
 </div>
 

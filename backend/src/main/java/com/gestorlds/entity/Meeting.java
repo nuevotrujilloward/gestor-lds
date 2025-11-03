@@ -28,7 +28,7 @@ public class Meeting {
     private MeetingType meetingType;
 
     @Column(nullable = false)
-    private LocalDate fechaProgramada;
+    private LocalDateTime fechaProgramada;
 
     @Column(length = 255)
     private String ubicacion;
