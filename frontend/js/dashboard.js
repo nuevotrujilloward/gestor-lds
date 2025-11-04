@@ -172,6 +172,7 @@ async function loadMeetings() {
                         ${meeting.notasGenerales ? `<p><strong>📝</strong> ${meeting.notasGenerales}</p>` : ''}
                     </div>
                     <div class="meeting-actions">
+                        <button class="btn-view" onclick="viewMeetingAgenda('${meeting.id}')">Ver Agenda</button>
                         <button class="btn-edit" onclick="editMeeting('${meeting.id}')">Editar</button>
                         <button class="btn-delete" onclick="deleteMeeting('${meeting.id}')">Eliminar</button>
                     </div>
@@ -274,4 +275,143 @@ window.onclick = function(event) {
     if (event.target === modal) {
         closeCreateMeetingModal();
     }
+
+    const agendaModal = document.getElementById('agendaModal');
+    if (event.target === agendaModal) {
+        closeAgendaModal();
+    }
 };
+
+// View meeting agenda
+let currentMeetingId = null;
+
+async function viewMeetingAgenda(meetingId) {
+    currentMeetingId = meetingId;
+    const modal = document.getElementById('agendaModal');
+    modal.classList.add('show');
+
+    await loadAgendaItems(meetingId);
+}
+
+async function loadAgendaItems(meetingId) {
+    const agendaList = document.getElementById('agendaItemsList');
+    agendaList.innerHTML = '<div class="loading">Cargando agenda...</div>';
+
+    try {
+        const items = await api.getAgendaByMeeting(meetingId);
+
+        if (items.length === 0) {
+            agendaList.innerHTML = `
+                <div class="empty-state">
+                    <p>No hay items en la agenda</p>
+                    <p style="font-size: 13px; margin-top: 8px;">Usa el botón "Agregar Item" para comenzar</p>
+                </div>
+            `;
+            return;
+        }
+
+        agendaList.innerHTML = items.map(item => `
+            <div class="agenda-item">
+                <div class="agenda-order">${item.numeroOrden}</div>
+                <div class="agenda-content">
+                    <div class="agenda-header">
+                        <h5>${item.titulo}</h5>
+                        <span class="agenda-type">${item.tipo}</span>
+                    </div>
+                    ${item.descripcion ? `<p class="agenda-description">${item.descripcion}</p>` : ''}
+                    ${item.asignadoNombre || item.emailAsignado ? `
+                        <p class="agenda-assigned">
+                            <strong>Asignado:</strong> ${item.asignadoNombre || item.emailAsignado}
+                            ${item.confirmado ? '<span class="badge-confirmed">✓ Confirmado</span>' : '<span class="badge-pending">Pendiente</span>'}
+                        </p>
+                    ` : ''}
+                    ${item.tiempoAsignado ? `<p class="agenda-time">${item.tiempoAsignado} minutos</p>` : ''}
+                </div>
+                <div class="agenda-actions">
+                    ${!item.confirmado && item.asignadoNombre ? `<button class="btn-confirm" onclick="confirmAgendaItem('${item.id}')">Confirmar</button>` : ''}
+                    <button class="btn-delete-small" onclick="deleteAgendaItem('${item.id}')">🗑️</button>
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error('Error loading agenda:', error);
+        agendaList.innerHTML = '<div class="empty-state">Error al cargar agenda</div>';
+    }
+}
+
+function closeAgendaModal() {
+    const modal = document.getElementById('agendaModal');
+    modal.classList.remove('show');
+    currentMeetingId = null;
+}
+
+function showAddAgendaItemModal() {
+    document.getElementById('agendaModal').classList.remove('show');
+    document.getElementById('addAgendaItemModal').classList.add('show');
+
+    // Load users for assignment
+    loadUsersForAgenda();
+}
+
+async function loadUsersForAgenda() {
+    try {
+        const users = await api.getActiveUsers();
+        const select = document.getElementById('agendaAsignado');
+        select.innerHTML = '<option value="">Sin asignar</option>' +
+            users.map(user => `<option value="${user.id}">${user.nombre} (${user.rolNombre})</option>`).join('');
+    } catch (error) {
+        console.error('Error loading users:', error);
+    }
+}
+
+function closeAddAgendaItemModal() {
+    document.getElementById('addAgendaItemModal').classList.remove('show');
+    document.getElementById('addAgendaItemForm').reset();
+    document.getElementById('agendaModal').classList.add('show');
+}
+
+// Handle add agenda item form
+document.getElementById('addAgendaItemForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const agendaData = {
+        numeroOrden: parseInt(formData.get('numeroOrden')),
+        tipo: formData.get('tipo'),
+        titulo: formData.get('titulo'),
+        descripcion: formData.get('descripcion') || null,
+        asignadoAId: formData.get('asignadoAId') || null,
+        emailAsignado: formData.get('emailAsignado') || null,
+        tiempoAsignado: formData.get('tiempoAsignado') ? parseInt(formData.get('tiempoAsignado')) : null,
+    };
+
+    try {
+        await api.createAgendaItem(currentMeetingId, agendaData);
+        closeAddAgendaItemModal();
+        await loadAgendaItems(currentMeetingId);
+    } catch (error) {
+        alert('Error al agregar item: ' + error.message);
+    }
+});
+
+async function deleteAgendaItem(agendaId) {
+    if (!confirm('¿Eliminar este item de la agenda?')) {
+        return;
+    }
+
+    try {
+        await api.deleteAgendaItem(agendaId);
+        await loadAgendaItems(currentMeetingId);
+    } catch (error) {
+        alert('Error al eliminar item: ' + error.message);
+    }
+}
+
+async function confirmAgendaItem(agendaId) {
+    try {
+        await api.confirmAgendaItem(agendaId);
+        await loadAgendaItems(currentMeetingId);
+    } catch (error) {
+        alert('Error al confirmar: ' + error.message);
+    }
+}

@@ -147,4 +147,69 @@ const api = {
             throw new Error('Error al eliminar reunión');
         }
     },
+
+    // Agenda
+    async getAgendaByMeeting(meetingId) {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE_URL}/agenda/meeting/${meetingId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener agenda');
+        }
+
+        return response.json();
+    },
+
+    async createAgendaItem(meetingId, agendaData) {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE_URL}/agenda/meeting/${meetingId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify(agendaData),
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Error al crear item de agenda');
+        }
+
+        return response.json();
+    },
+
+    async deleteAgendaItem(agendaId) {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE_URL}/agenda/${agendaId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al eliminar item de agenda');
+        }
+    },
+
+    async confirmAgendaItem(agendaId) {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${API_BASE_URL}/agenda/${agendaId}/confirm`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al confirmar item de agenda');
+        }
+
+        return response.json();
+    },
 };

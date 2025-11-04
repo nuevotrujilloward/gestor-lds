@@ -229,6 +229,87 @@
     </div>
 </div>
 
+<!-- Modal de Agenda de Reunión -->
+<div id="agendaModal" class="modal">
+    <div class="modal-content modal-large">
+        <div class="modal-header">
+            <h3>Agenda de la Reunión</h3>
+            <span class="close" onclick="closeAgendaModal()">&times;</span>
+        </div>
+        <div style="padding: 24px;">
+            <div class="section-header" style="margin-bottom: 16px;">
+                <h4>Items de la Agenda</h4>
+                <button class="btn-primary-action" onclick="showAddAgendaItemModal()">
+                    <span>➕</span> Agregar Item
+                </button>
+            </div>
+            <div id="agendaItemsList"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para agregar item a la agenda -->
+<div id="addAgendaItemModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Agregar Item a la Agenda</h3>
+            <span class="close" onclick="closeAddAgendaItemModal()">&times;</span>
+        </div>
+        <form id="addAgendaItemForm">
+            <div class="form-group">
+                <label for="agendaOrden">Orden *</label>
+                <input type="number" id="agendaOrden" name="numeroOrden" min="1" required placeholder="1, 2, 3...">
+            </div>
+
+            <div class="form-group">
+                <label for="agendaTipo">Tipo *</label>
+                <select id="agendaTipo" name="tipo" required>
+                    <option value="">Seleccionar...</option>
+                    <option value="APERTURA">Apertura</option>
+                    <option value="DISCURSO">Discurso</option>
+                    <option value="NUMERO_MUSICAL">Número Musical</option>
+                    <option value="ADMINISTRACION">Administración</option>
+                    <option value="ANUNCIO">Anuncio</option>
+                    <option value="CLAUSURA">Clausura</option>
+                    <option value="OTRO">Otro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="agendaTitulo">Título *</label>
+                <input type="text" id="agendaTitulo" name="titulo" required placeholder="Ej: Discurso sobre la fe">
+            </div>
+
+            <div class="form-group">
+                <label for="agendaDescripcion">Descripción</label>
+                <textarea id="agendaDescripcion" name="descripcion" rows="2" placeholder="Tema o detalles..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="agendaAsignado">Asignar a (Usuario del sistema)</label>
+                <select id="agendaAsignado" name="asignadoAId">
+                    <option value="">Sin asignar</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="agendaEmail">O asignar por Email (no registrado)</label>
+                <input type="email" id="agendaEmail" name="emailAsignado" placeholder="email@ejemplo.com">
+            </div>
+
+            <div class="form-group">
+                <label for="agendaTiempo">Tiempo Asignado (minutos)</label>
+                <input type="number" id="agendaTiempo" name="tiempoAsignado" min="1" placeholder="Ej: 10">
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="closeAddAgendaItemModal()">Cancelar</button>
+                <button type="submit" class="btn-primary">Agregar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <script src="js/api.js"></script>
 <script src="js/dashboard.js"></script>
 </body>
