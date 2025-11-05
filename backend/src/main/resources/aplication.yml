@@ -30,11 +30,13 @@ spring:
 
   mvc:
     cors:
-      allowed-origins: "http://localhost:3000,http://localhost:8000,http://localhost,http://127.0.0.1:3000"
+      allowed-origins: "http://localhost:3000,http://localhost:8000,http://localhost,http://127.0.0.1:3000,https://gestorlds.koyeb.app"
       allowed-methods: GET,POST,PUT,DELETE,OPTIONS,PATCH
       allowed-headers: "*"
       allow-credentials: true
       max-age: 3600
+
+    
 
 server:
   port: 8080
