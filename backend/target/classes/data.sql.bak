@@ -78,7 +78,8 @@ INSERT INTO roles (id, nombre, descripcion, nivel, permisos, created_at, updated
 -- USUARIO ADMINISTRADOR INICIAL
 -- =====================================================
 -- Password: admin123 (hash BCrypt)
-INSERT INTO users (id, email, nombre, rol_id, password_hash, activo, created_at, updated_at) VALUES (RANDOM_UUID(), 'obispo@gestorlds.com', 'Obispo Leopoldo García', (SELECT id FROM roles WHERE nombre = 'Obispo'), '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', TRUE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (id, email, nombre, rol_id, password_hash, activo, created_at, updated_at) VALUES (RANDOM_UUID(), 'lgarcia@gestorlds.com', 'Obispo Leopoldo García', (SELECT id FROM roles WHERE nombre = 'Obispo'), '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', TRUE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO users (id, email, nombre, rol_id, password_hash, activo, created_at, updated_at) VALUES (RANDOM_UUID(), 'rmendoza@gestorlds.com', 'Hno. Robert Mendoza', (SELECT id FROM roles WHERE nombre = 'Primer Consejero del Obispado'), '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', TRUE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- =====================================================
 -- TIPOS DE REUNIONES

@@ -158,15 +158,30 @@ public class DataInitializer {
                         .orElseThrow(() -> new RuntimeException("Rol Obispo no encontrado"));
 
                 User admin = User.builder()
-                        .email("obispo@gestorlds.com")
-                        .nombre("Obispo Admin")
+                        .email("lgarcia@gestorlds.com")
+                        .nombre("Leopoldo Garcia")
                         .rol(obispoRole)
                         .passwordHash(passwordEncoder.encode("admin123"))
                         .activo(true)
                         .build();
                 userRepository.save(admin);
 
-                log.info("✓ Usuario Obispo creado: obispo@gestorlds.com");
+                log.info("✓ Usuario Obispo creado: lgarcia@gestorlds.com");
+
+                // Crear usuario rmendoza
+                Role rmendozaRole = roleRepository.findByNombre("Primer Consejero del Obispado")
+                        .orElseThrow(() -> new RuntimeException("Rol Primer Consejero del Obispado no encontrado"));
+
+                User rmendoza = User.builder()
+                        .email("rmendoza@gestorlds.com")
+                        .nombre("Robert Mendoza")
+                        .rol(rmendozaRole)
+                        .passwordHash(passwordEncoder.encode("admin123"))
+                        .activo(true)
+                        .build();
+                userRepository.save(rmendoza);
+
+                log.info("✓ Usuario Primer Consejero del Obispado creado: rmendoza@gestorlds.com");
 
                 // Crear tipos de reuniones
                 createMeetingType("Sacramental", "Reunión Sacramental dominical", "SEMANAL",
@@ -181,7 +196,10 @@ public class DataInitializer {
                 log.info("✓ {} tipos de reuniones creados", meetingTypeRepository.count());
                 log.info("===========================================");
                 log.info("SISTEMA INICIALIZADO CORRECTAMENTE");
-                log.info("Login: obispo@gestorlds.com / admin123");
+                log.info("Login: lgarcia@gestorlds.com / admin123");
+                log.info("===========================================");
+                log.info("SISTEMA INICIALIZADO CORRECTAMENTE");
+                log.info("Login: rmendoza@gestorlds.com / admin123");
                 log.info("===========================================");
             }
         };
