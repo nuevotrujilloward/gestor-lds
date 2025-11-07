@@ -1,27 +1,33 @@
 services:
-  # Backend API
+  # Backend Spring Boot
   - type: web
     name: gestorlds-backend
-    env: java
+    env: node            # Render necesita un entorno válido; usamos "node" como placeholder
     branch: main
-    buildCommand: ./build.sh
-    startCommand: ./start.sh
+    buildCommand: |
+      cd backend
+      ./mvnw clean package -DskipTests
+    startCommand: |
+      cd backend
+      java -jar target/*.jar
     plan: free
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
       - key: PORT
         value: 8080
-      # JWT_SECRET se configurará manualmente en Render Dashboard por seguridad
     healthCheckPath: /api/auth/users/active
 
-  # Frontend Static Site
+  # Frontend estático
   - type: web
     name: gestorlds-frontend
     env: static
     branch: main
-    buildCommand: echo "No build needed"
-    staticPublishPath: ./frontend
+    buildCommand: |
+      cd frontend
+      npm install
+      npm run build
+    staticPublishPath: frontend/dist   # o el path donde genera el build
     plan: free
     routes:
       - type: rewrite
