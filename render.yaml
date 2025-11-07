@@ -11,10 +11,9 @@ services:
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
-      - key: JWT_SECRET
-        value: tu-super-secreto-seguro-256-bits
       - key: PORT
         value: 8080
+      # JWT_SECRET se configurará manualmente en Render Dashboard por seguridad
     healthCheckPath: /api/auth/users/active
 
   # Frontend Static Site
