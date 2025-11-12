@@ -16,7 +16,7 @@ services:
     healthCheckPath: /api/auth/users/active
 
   # Frontend Static Site
-  - type: static_site
+  - type: web
     name: gestorlds-frontend
     env: static
     branch: main
