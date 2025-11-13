@@ -3,14 +3,20 @@ spring:
     name: GestorLDS
 
   datasource:
-    url: jdbc:postgresql://${DB_HOST:roundhouse.proxy.rlwy.net}:${DB_PORT:5432}/${DB_NAME:railway}
+    # Opción 1: Usar DATABASE_URL directa (Railway la proporciona automáticamente)
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/gestorlds}
     driver-class-name: org.postgresql.Driver
-    username: ${DB_USER:postgres}
-    password: ${DB_PASSWORD:hEKbANdBBydEhcaqqVnQtCbWJowyLvON}
+
+    # Opción 2: Si prefieres usar variables separadas
+    # url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:railway}
+    # username: ${PGUSER:postgres}
+    # password: ${PGPASSWORD}
+
     hikari:
       maximum-pool-size: 10
       minimum-idle: 2
-      idle-timeout: 30000
+      connection-timeout: 30000
+      idle-timeout: 600000
       max-lifetime: 1800000
 
   jpa:
@@ -23,38 +29,46 @@ spring:
         format_sql: true
         jdbc:
           time_zone: America/Lima
+        temp:
+          use_jdbc_metadata_defaults: false
+    open-in-view: false
 
-    h2:
-      console:
-        enabled: false
-
-    mvc:
-      cors:
-        allowed-origins: "*"
-        allowed-methods: GET,POST,PUT,DELETE,OPTIONS,PATCH
-        allowed-headers: "*"
-        allow-credentials: true
-
-  server:
-    port: ${PORT:8080}
-
-  logging:
-    level:
-      root: INFO
-      com.gestorlds: INFO
-      org.springframework.security: INFO
-      org.hibernate.SQL: INFO
-
-    pattern:
-      console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
-
-  app:
-    jwt:
-      secret: ${JWT_SECRET}
-      expiration: 86400000
-
-  springdoc:
-    swagger-ui:
+  h2:
+    console:
       enabled: false
-    api-docs:
-      enabled: false
+
+  mvc:
+    cors:
+      allowed-origins: "*"
+      allowed-methods: GET,POST,PUT,DELETE,OPTIONS,PATCH
+      allowed-headers: "*"
+      allow-credentials: true
+      max-age: 3600
+
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: always
+    include-binding-errors: always
+
+logging:
+  level:
+    root: INFO
+    com.gestorlds: DEBUG
+    org.springframework.security: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration: 86400000
+
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false
