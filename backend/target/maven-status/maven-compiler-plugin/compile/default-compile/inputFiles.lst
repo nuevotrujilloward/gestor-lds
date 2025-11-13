@@ -1,22 +1,34 @@
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\GestorLdsApplication.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\App.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\dto\CreateUserRequest.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\service\UserService.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\config\SecurityConfig.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\entity\MeetingAgenda.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\entity\Reminder.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\entity\MeetingType.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\repository\TaskRepository.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\controller\AuthController.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\entity\Role.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\repository\RoleRepository.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\entity\Meeting.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\entity\User.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\repository\MeetingRepository.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\repository\UserRepository.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\entity\TaskTemplate.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\dto\LoginRequest.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\dto\LoginResponse.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\service\JwtTokenProvider.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\dto\UserDto.java
-C:\Users\ROBERT MENDOZA\Documents\GitHub\gestor-lds\backend\src\main\java\com\gestorlds\entity\Task.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\controller\AgendaController.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\dto\CreateAgendaItemRequest.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\entity\Reminder.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\entity\TaskTemplate.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\repository\UserRepository.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\service\AgendaService.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\dto\LoginResponse.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\dto\UserDto.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\entity\Task.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\dto\MeetingDto.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\entity\Meeting.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\repository\RoleRepository.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\service\MeetingService.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\dto\LoginRequest.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\dto\AgendaItemDto.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\config\SecurityConfig.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\service\UserService.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\config\DatabaseConfig.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\entity\MeetingAgenda.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\repository\MeetingRepository.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\dto\CreateUserRequest.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\App.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\dto\CreateMeetingRequest.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\repository\MeetingAgendaRepository.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\config\DataInitializer.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\repository\TaskRepository.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\controller\AuthController.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\repository\MeetingTypeRepository.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\entity\User.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\service\JwtTokenProvider.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\GestorLdsApplication.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\controller\MeetingController.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\entity\Role.java
+C:\Users\AMENDOZA\Documents\ROBERT\PROYECTOS\gestor-lds\backend\src\main\java\com\gestorlds\entity\MeetingType.java
