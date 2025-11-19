@@ -52,13 +52,6 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- H2 Database (mantener para desarrollo local) -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
         <!-- PostgreSQL Driver (para producción) -->
         <dependency>
             <groupId>org.postgresql</groupId>
